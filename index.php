@@ -22,7 +22,7 @@ $email=$_SESSION['email'];
 
 if(isset($_POST['dob']))
 $dob = date("d-m-Y",$_SESSION['dob']);
-
+}
 include("dbFunc.php");
 $y = new dbFunc();
 $res = $y->search();

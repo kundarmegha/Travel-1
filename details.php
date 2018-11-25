@@ -12,6 +12,7 @@ if ( !empty($_GET['id'])) {
 }
 $_SESSION['id']= $_GET['id'];
 ?>
+
 <html>
 <head>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -132,6 +133,7 @@ if(isset($_POST['reply']))
 }
 $row = $obj-> fetch_comment($sid);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -227,7 +229,6 @@ $row = $obj-> fetch_comment($sid);
                             </div>
                         </div>
                     </article>
-
                 </section>
             </div>
             </div><?php }} ?>
@@ -238,7 +239,6 @@ $row = $obj-> fetch_comment($sid);
             <form method='POST' action=''>
                 <textarea name='comment1' id='comment1'></textarea>
                 <input type='text' name='urlId'  value="<?php echo $_GET['id'] ?>" style="display: none;">
-
                 <textarea name='comment' id='comment' class='form-control' cols='30' rows='10' maxlength='300' required></textarea>
                 <br>
                 <span class="error"><?php if(isset($captchaerr)) echo $captchaerr ?> </span><br>

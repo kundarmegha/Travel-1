@@ -108,8 +108,9 @@ require_once 'dbConnect.php';
                 while($row = mysqli_fetch_assoc($result))
                 {
                     $solutions[$row['id']] = $row;
-                }
-                return $solutions;
+                    return $solutions;
+                }   
+               
             }
             else
             {
@@ -128,8 +129,9 @@ require_once 'dbConnect.php';
                 if($row = mysqli_fetch_assoc($result))
                 {
                     $solutions = $row;
+                    return $solutions;
                 }
-                return $solutions;
+                
             }
             else
             {
@@ -153,7 +155,7 @@ require_once 'dbConnect.php';
             }
         }
 
-        function like_count($sid,$user,$check)
+        function like_count($sid,$check)
         {
             $sql = "select count(id) from reaction where $check = '1' and sid= $sid";
             $result = mysqli_query($this->db->conn, $sql);

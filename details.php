@@ -41,26 +41,21 @@ $photo=$result['photo']?>
 
 </div>
 <?php  require_once('reaction.php');
-if (!(empty($_SESSION['username'])))
-session_start();
 require_once('dbFunc.php');
 if (isset($_SESSION['username'])) {
     $name = $_SESSION['username'];
+    $sid = $_SESSION['id'];
+
 }
     else
     $name = "Annonymus";
-$urlId=$_POST['urlId'];
-$sid = $_SESSION['id'];
-$comment=$_POST['comment'];
-$comment = trim($comment);
-$proimage = $_SESSION['proimage'];
-$reply = $_POST['creply'];
-$reply = trim($reply);
-$pid = $_POST['pid'];
+
 $obj = new dbFunc();
 $flag = 1;
 if(isset($_POST['submit']))
 {
+    $comment=$_POST['comment'];
+    $comment = trim($comment);
     $gcaptch_response = $_POST['g-recaptcha-response'];
 
     $remoteip = $_SERVER['REMOTE_ADDR'];
@@ -115,6 +110,9 @@ if(isset($_POST['submit']))
 if(isset($_POST['reply']));
 {
   if(!(empty($reply))){
+    $reply = $_POST['creply'];
+    $reply = trim($reply);
+    $pid = $_POST['pid'];
       $date=date('Y-m-d H:i:s');
       $date = strtotime($date);
       $rurlId=$_POST['rurlId'];
@@ -237,7 +235,7 @@ $row = $obj-> fetch_comment($sid);
 
                     <textarea name='comment' id='comment' class='form-control' cols='30' rows='10' maxlength='300' required></textarea>
                     <br>
-                    <span class="error"><?php echo $captchaerr ?> </span><br>
+                    <span class="error"><?php if(isset($captchaerr)) echo $captchaerr ?> </span><br>
                     <div class="g-recaptcha" data-sitekey="6LdumnwUAAAAAPxnmm9BtC-WW9Uid4mSQGXbKPEz"></div><br>
                     <input type='submit' name='submit' class='btn btn-danger' value='Submit'>
                 </form>

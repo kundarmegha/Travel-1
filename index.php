@@ -8,10 +8,19 @@ if(isset($_POST['logout']))
     unset($_SESSION['username']);
     echo "<script>location.href='login.php'</script>";
 }
+if(isset($_POST['username']))
 $username =$_SESSION['username'];
+
+if(isset($_POST['firstname']))
 $first=$_SESSION['firstname'];
+
+if(isset($_POST['lastname']))
 $last=$_SESSION['lastname'];
+
+if(isset($_POST['email']))
 $email=$_SESSION['email'];
+
+if(isset($_POST['dob']))
 $dob = date("d-m-Y",$_SESSION['dob']);
 
 include("dbFunc.php");

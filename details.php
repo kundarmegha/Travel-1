@@ -250,6 +250,6 @@ $row = $obj-> fetch_comment($sid);
 </div>
 </body>
 <script src='https://www.google.com/recaptcha/api.js'></script>
-</html>?>
+</html>
 </body>
 </html>

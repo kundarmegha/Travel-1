@@ -2,8 +2,8 @@
 $like = $_POST['like'];
 $dislike = $_POST['dislike'];
 $table = "reaction";
-$sid = 2;
-$user = "deeksha";
+$sid = $_SESSION['id'];
+$user = $_SESSION['username'];
 require_once('dbFunc.php');
 $obj = new dbFunc();
 $select = "user";

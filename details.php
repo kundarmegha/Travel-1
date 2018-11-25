@@ -2,11 +2,13 @@
 session_start();
 include("dbFunc.php");
 $id = null;
+
 if ( !empty($_GET['id'])) {
    $id = $_GET['id'];
 }
 $_SESSION['id']= $_GET['id'];
 ?>
+
 <html>
     <head>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -125,7 +127,7 @@ if(isset($_POST['reply']));
   }
 }
 $row = $obj-> fetch_comment($sid);
-    ?>
+?>
     <!DOCTYPE html>
     <html>
     <head>
@@ -224,7 +226,8 @@ $row = $obj-> fetch_comment($sid);
 
                     </section>
                 </div>
-                </div><?php }} ?>
+                </div>
+                <?php }} ?>
     </div>
     <div class="container">
         <div class='row'>

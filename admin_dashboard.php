@@ -2,7 +2,7 @@
     include("db.php");
     $obj=new db();
     $conn=$obj->dbconnector();
-    $res = mysqli_query($conn, "SELECT * FROM user_details");
+    $res = mysqli_query($conn, "SELECT * FROM profile");
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
       <div class="col-md-12 main-container">
       <?php
        while($row=mysqli_fetch_array($res)){
-            $user_id=$row['user_id'];
+            $user_id=$row['username'];
             $res1 = mysqli_query($conn, "SELECT * FROM travel_details where user_id=$user_id");
             
             foreach($res1 as $row1){
@@ -63,7 +63,7 @@
                   <?php
        }
     }
-       }
+}
                   ?>
               
    </div>

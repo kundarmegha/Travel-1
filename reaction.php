@@ -58,7 +58,6 @@ $dcount = $obj->like_count($sid,$dcheck);
                     url: "ajax.php",
                     data: {"like": like, "dislike": dislike},
                     success: function(response){
-                        alert(response);
                         var res = (JSON.parse(response));
                         $("#lcount").html(res.lcount);
                         $("#dcount").html(res.dcount);

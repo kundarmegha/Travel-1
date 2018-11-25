@@ -1,7 +1,12 @@
 <?php
 session_start();
+echo "<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>";
 include("dbFunc.php");
-$id = null;
+//$id = null;
 if ( !empty($_GET['id'])) {
     $id = $_GET['id'];
 }
@@ -109,7 +114,8 @@ if(isset($_POST['submit']))
 }
 if(isset($_POST['reply']))
 {
-    if(!(empty($reply))){
+   if(isset($_POST['creply']))
+    {
         $reply = $_POST['creply'];
         $reply = trim($reply);
         $pid = $_POST['pid'];
@@ -119,10 +125,10 @@ if(isset($_POST['reply']))
         $table = "reply";
         $field = array("name","reply","pid","date");
         $data = array($name,$reply,$pid,$date);
-        $obj->Insertdata($table,$field,$data);
-        $_POST['reply']='';
-
+        $var = $obj->Insertdata($table,$field,$data);
+        $_POST['creply'] = '';
     }
+   $_POST['reply']='';
 }
 $row = $obj-> fetch_comment($sid);
 ?>

@@ -7,13 +7,13 @@ if(isset($_POST['logout']))
     session_destroy();
     unset($_SESSION['username']);
     echo "<script>location.href='login.php'</script>";
-}
-$username =$_SESSION['username'];
+}if(isset($_SESSION['username']))
+{$username =$_SESSION['username'];
 $first=$_SESSION['firstname'];
 $last=$_SESSION['lastname'];
 $email=$_SESSION['email'];
 $dob = date("d-m-Y",$_SESSION['dob']);
-
+}
 include("dbFunc.php");
 $y = new dbFunc();
 $res = $y->search();

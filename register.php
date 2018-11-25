@@ -18,11 +18,11 @@ $flag=1;
 //}
 $name = explode(" ", "$fullname", 2);
 $firstname = $name[0];
-if (!(preg_match("/^.+[a-z]{3,}$/i", $firstname)))
-{
-    $firerr='* Enter the valid firstname *';
-    $flag=0;
-}
+// if (!(preg_match("/^.+[a-z]{3,}$/i", $firstname)))
+// {
+//     $firerr='* Enter the valid firstname *';
+//     $flag=0;
+// }
 
 $lastname = $name[1];
 
@@ -31,11 +31,11 @@ if(empty($lastname))
     $lasterr='* Enter the lastname *';
     $flag=0;
 }
-if (!(preg_match("/^.*[a-z]$/i", $lastname)))
-{
-    $lasterr='* Enter the valid lastname *';
-    $flag=0;
-}
+// if (!(preg_match("/^.*[a-z]$/i", $lastname)))
+// {
+//     $lasterr='* Enter the valid lastname *';
+//     $flag=0;
+// }
 if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
     $mailerr='* Enter the valid mail *';
     $flag=0;
@@ -46,10 +46,10 @@ if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
 //    $flag=0;
 //}
 
- if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
-     $paswerr='* password constraints doesn\'t match *';
-     $flag=0;
- }
+//  if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
+//      $paswerr='* password constraints doesn\'t match *';
+//      $flag=0;
+//  }
 
 $password = password_hash($password, PASSWORD_DEFAULT);
 if (!(password_verify($confirm, $password))) {

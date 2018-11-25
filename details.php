@@ -44,11 +44,13 @@ $photo=$result['photo']?>
 if (!(empty($_SESSION['username'])))
 session_start();
 require_once('dbFunc.php');
-if (isset($_SESSION['username']))
+if (isset($_SESSION['username'])) {
     $name = $_SESSION['username'];
-else
-    $name = "Annonymus";$sid = $_SESSION['id'];
+}
+    else
+    $name = "Annonymus";
 $urlId=$_POST['urlId'];
+$sid = $_SESSION['id'];
 $comment=$_POST['comment'];
 $comment = trim($comment);
 $proimage = $_SESSION['proimage'];

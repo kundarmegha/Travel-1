@@ -33,18 +33,17 @@ $res = $y->search();
 
     <div class="col-md-12 main-container">
         <div class="col-md-6 headerstyle">
-            <a href="viewStories.php" >  <img src="logo.png" class="logo">
+            <a href="index.php" >  <img src="logo.png" class="logo">
         </div>
         <div class="col-md-6 headerstyle text-right">
-            <form action="" method="post">
             <?php if((isset($_SESSION['username'])))
-                echo '
-            <a href="index.php"> <button type="submit" name="logout" class="btnstyle">Logout</button></a>';
+           echo ' <form action="" method="post">
+            <a href="index.php"> <button type="submit" name="logout" class="btnstyle">Logout</button></a>
+             </form>';
             else
-                echo '
-            <a href="login.php"> <button type="submit" name="log" class="btnstyle">Login</button></a>';
+                echo ' <a href="login.php"> <button type="submit" name="log" class="btnstyle">Login</button></a>';
             ?>
-            </form>
+
         </div>
         <img src="slider-1.jpg" class="centerview">
     </div>

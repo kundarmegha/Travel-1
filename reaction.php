@@ -1,8 +1,8 @@
 <?php
 require_once ('dbFunc.php');
 $obj = new dbFunc();
-$user = "deeksha";
-$sid = 2;
+$user = $_SESSION['username'];
+$sid = $_SESSION['id'];
 $select = "`like`";
 $lrow = $obj->like_check($sid,$user,$select);
 $select = "dislike";

@@ -122,9 +122,9 @@ $dbObj->Insertdata($table,$field,$data);
          <span class="error"><?php if(isset($eiderr)) echo $eiderr ?> </span><br>
          <span class="error"><?php if(isset($eiderr)) echo $usereerr ?> </span><br>
          <input type="text"  name="username" value="<?php if (isset($eiderr)) echo $_POST['eid'];?>"  class="form-control" placeholder="Enter the username" maxlength="15" required><br>
-         <!-- <span class="error"><?php if(isset($passerr)) echo $paswerr ?> </span><br> -->
+          <span class="error"><?php if(isset($passerr)) echo $paswerr ?> </span><br>
          <input type="password"  name="password"   class="form-control" placeholder="Enter Password" required><br>
-         <!-- <span class="error"><?php echo $passerr ?> </span><br> -->
+          <span class="error"><?php echo $passerr ?> </span><br>
          <input type="password"  name="confirm"   class="form-control" placeholder="Confirm password" required><br>
          <input type="date"  name="dob" value="<?php echo $_POST['dob'];?>" class="form-control" placeholder="Enter the Date of birth" required><br>
 <!--        <label >Select a file</label>-->

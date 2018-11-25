@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_POST['register']))
 {
 $fullname=$_POST['fullname'];
@@ -9,6 +10,7 @@ $confirm=$_POST['confirm'];
 $username = $_POST['username'];
 $dob=$_POST['dob'];
 $flag=1;
+
 //$photo = $_FILES['file']['name'];
 //$filepath="upload/".$photo;
 //$up=move_uploaded_file($_FILES["file"]["tmp_name"] , "$filepath");
@@ -16,30 +18,37 @@ $flag=1;
 //{
 //    echo'image not uploaded';
 //}
+
 $name = explode(" ", "$fullname", 2);
 $firstname = $name[0];
+if(isset($name[1]))
+{$lastname = $name[1];
+if (!(preg_match("/^.*[a-z]$/i", $lastname)))
+{
+    $lasterr='* Enter the valid lastname *';
+    $flag=0;
+}}
+else
+{
+    $lasterr='* Enter the lastname *';
+    $flag=0;
+}
 if (!(preg_match("/^.+[a-z]{3,}$/i", $firstname)))
 {
     $firerr='* Enter the valid firstname *';
     $flag=0;
 }
 
-$lastname = $name[1];
 
-if(empty($lastname))
-{
-    $lasterr='* Enter the lastname *';
-    $flag=0;
-}
-if (!(preg_match("/^.*[a-z]$/i", $lastname)))
-{
-    $lasterr='* Enter the valid lastname *';
-    $flag=0;
-}
+
+
+
+
 if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
     $mailerr='* Enter the valid mail *';
     $flag=0;
 }
+
 //if (!(preg_match("/^*[a-z][0-9]/i", $username)))
 //{
 //    $eiderr='* Enter the valid username *';
@@ -52,11 +61,14 @@ if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
  }
 
 $password = password_hash($password, PASSWORD_DEFAULT);
+
 if (!(password_verify($confirm, $password))) {
     $passerr='* password doesn\'t match *';
     $flag=0;
 }
+
 $dob = strtotime($dob);
+
 if($flag==1)
 {
 include_once('dbFunc.php');
@@ -64,8 +76,9 @@ $dbObj=new dbFunc();
 $table = "login_details";
 $field = array("username","password");
 $data = array($username,$password);
-$dbObj->Insertdata($table,$field,$data);
-
+$reg = $dbObj->Insertdata($table,$field,$data);
+if($reg==0)
+$usereerr = "username  not available";
 $table = "profile";
 $field = array("username","firstname","lastname","email","dob");
 $data = array($username,$firstname,$lastname,$email,$dob);
@@ -73,7 +86,9 @@ $dbObj->Insertdata($table,$field,$data);
 
 }
 }
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,11 +115,12 @@ $dbObj->Insertdata($table,$field,$data);
             <span class="label label-danger"  style="text-align:center;">Registration
             </h1></div><br><br>
         <form action="register.php" method="post" name="register" class="col-md-4 col-md-offset-4" enctype="multipart/form-data"><br><br>
-      <!-- <span class="error"><?php if(isset($firerr)) echo $firerr ;  ?></span> <br>
-        <span class="error"><?php if(isset($lasterr)) echo $lasterr ;  ?></span> <br> -->
+      <span class="error"><?php if(isset($firerr)) echo $firerr ;  ?></span> <br>
+        <span class="error"><?php if(isset($lasterr)) echo $lasterr ;  ?></span> <br>
         <input type="text" name="fullname" placeholder="Enter the fullname" value="<?php if(isset($_POST['fullname'])) echo $_POST['fullname'];?>" class="form-control"required><br><span class="error"><?php if(isset($mailerr)) echo $mailerr ?> </span><br>
          <input type="email" name="email" value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" class="form-control" placeholder="Enter the Email" required><br>
-         <!-- <span class="error"><?php if(isset($eiderr)) echo $eiderr ?> </span><br> -->
+         <span class="error"><?php if(isset($eiderr)) echo $eiderr ?> </span><br>
+         <span class="error"><?php if(isset($eiderr)) echo $usereerr ?> </span><br>
          <input type="text"  name="username" value="<?php if (isset($eiderr)) echo $_POST['eid'];?>"  class="form-control" placeholder="Enter the username" maxlength="15" required><br>
          <!-- <span class="error"><?php if(isset($passerr)) echo $paswerr ?> </span><br> -->
          <input type="password"  name="password"   class="form-control" placeholder="Enter Password" required><br>

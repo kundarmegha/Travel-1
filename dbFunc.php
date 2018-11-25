@@ -22,8 +22,7 @@ require_once 'dbConnect.php';
             }
             else
             {
-                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
-                exit(1);
+              return 0;
             }
         }
         function loginprocess($eid,$password)

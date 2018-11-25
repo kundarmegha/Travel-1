@@ -107,7 +107,7 @@ if(isset($_POST['submit']))
         }
     }
 }
-if(isset($_POST['reply']));
+if(isset($_POST['reply']))
 {
     if(!(empty($reply))){
         $reply = $_POST['creply'];

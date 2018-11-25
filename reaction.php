@@ -3,7 +3,8 @@ require_once ('dbFunc.php');
 $obj = new dbFunc();
 
 $sid = $_SESSION['id'];
-if(isset($_SESSION['username'])){
+if(isset($_SESSION['username']))
+{
 $user = $_SESSION['username'];
 $select = "`like`";
 $lrow = $obj->like_check($sid,$user,$select);
@@ -57,6 +58,7 @@ $dcount = $obj->like_count($sid,$dcheck);
                     url: "ajax.php",
                     data: {"like": like, "dislike": dislike},
                     success: function(response){
+                        alert(response);
                         var res = (JSON.parse(response));
                         $("#lcount").html(res.lcount);
                         $("#dcount").html(res.dcount);

@@ -108,9 +108,8 @@ require_once 'dbConnect.php';
                 while($row = mysqli_fetch_assoc($result))
                 {
                     $solutions[$row['id']] = $row;
-                    return $solutions;
-                }   
-               
+                }
+                return $solutions;
             }
             else
             {

@@ -3,7 +3,6 @@ require_once('dbFunc.php');
 $name = "guruss";
 $comment=$_POST['comment'];
 $comment = trim($comment);
-$proimage = $_SESSION['proimage'];
 $reply = $_POST['creply'];
 $reply = trim($reply);
 $pid = $_POST['pid'];

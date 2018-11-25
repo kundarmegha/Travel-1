@@ -55,7 +55,7 @@ if(isset($_POST['update'])){
     <a href="viewStories.php" >  <img src="logo.png" class="logo">
     </div>
     <div class="col-md-6 headerstyle text-right">
-            <button type="button" name="view" class="btnstyle"><a href="viewStories.php#story" >View</a></button>
+            <button type="button" name="view" class="btnstyle"><a href="index.php#story" >View</a></button>
     </div>
 
     

@@ -12,10 +12,10 @@ if (!(preg_match("/^[a-z]+[0-9]*/i", $username)))
    $eiderr='* Enter the valid username *';
    $flag=0;
 }
-if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
-    $paswerr='* password constraints doesn\'t match *';
-    $flag=0;
-}
+//if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
+//    $paswerr='* password constraints doesn\'t match *';
+//    $flag=0;
+//}
 
 if($flag==1)
 {
@@ -60,7 +60,7 @@ echo "<script>location.href='dashboard.php'</script>";
            </h1></div><br><br>
        <form action="login.php" method="post"  class="col-md-4 col-md-offset-4"><br><br>
         <input type="text"  name="username"   class="form-control" placeholder="Enter the username" maxlength="20" required><br>
-x        <input type="password"  name="password"   class="form-control" placeholder="Enter Password" required><br>
+        <input type="password"  name="password"   class="form-control" placeholder="Enter Password" required><br>
        <button type="submit" name="login" class="form-control btn btn-danger">Let's Go</button><br><br>
        </form>
    </section>

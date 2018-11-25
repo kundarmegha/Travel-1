@@ -1,5 +1,5 @@
 <?php
-include("data.php");
+include("dbFunc.php");
 $flag=0;
 $title = $_POST["title"];
 $user="deeksha";

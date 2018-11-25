@@ -1,5 +1,5 @@
 <?php  
-session_start();  
+//session_start();
 require_once 'dbConnect.php';  
 
     class dbFunc {  
@@ -7,7 +7,7 @@ require_once 'dbConnect.php';
         public function __construct() {  
             $this->db = new dbConnect();   
         }  
-    
+
         function Insertdata($table,$field,$data)
         {
             $field_values= implode(',',$field);
@@ -18,11 +18,66 @@ require_once 'dbConnect.php';
             $result = mysqli_query($this->db->conn,$sql);
             if($result)
             {
+//                echo "<script>location.href='login.php'</script>";
             }
             else
             {
                 echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
                 exit(1);
+            }
+        }
+        function loginprocess($eid,$password)
+        {
+            $ret = mysqli_query($this->db->conn, "SELECT * FROM login_details WHERE username='$eid'");
+            $row = mysqli_fetch_assoc($ret);
+            $pasw=$row['password'];
+            $id=$row['username'];
+            $_SESSION['username']=$row['username'];
+            if (password_verify($password,$pasw))
+            {
+              $row = mysqli_fetch_assoc($ret);
+            }
+            else
+            {
+                echo "<script>alert('Wrong password or username);</script>";
+                echo "<script>location.href='login.php'</script>";
+            }
+            return $id;
+        }
+        
+        function getdata($table,$field,$where,$id)
+        {
+            $field_values= implode(',',$field);
+            $sql= "SELECT $field_values FROM $table where $where='$id'";
+            $result = mysqli_query($this->db->conn, $sql);
+            if($result)
+            {
+                $num = sizeof($field);
+                $row = mysqli_fetch_assoc($result);
+                for ($i=0;$i<$num;$i++)
+                {
+                    $_SESSION[$field[$i]] = $row[$field[$i]];
+                }
+
+                echo "<script>location.href='index.php'</script>";
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+            }
+        }
+        function fetch_data($seid,$field,$table)
+        {
+         $sql = "select * from $table where username='$seid'";
+         $result = mysqli_query($this->db->conn, $sql);
+         if($result)
+            {
+                $row = mysqli_fetch_assoc($result);
+                return $row;
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
             }
         }
         function fetch_comment($sid)
@@ -34,9 +89,9 @@ require_once 'dbConnect.php';
                 while($row = mysqli_fetch_assoc($result))
                 {
 //                    print_r($row);die;
-                  $solutions[$row['id']] = $row;
+                    $solutions[$row['id']] = $row;
                 }
-            return $solutions;
+                return $solutions;
             }
             else
             {
@@ -115,5 +170,110 @@ require_once 'dbConnect.php';
                 exit(1);
             }
         }
+        public function insertstories($table_name, $data)
+        {
+
+            $string = "INSERT INTO ".$table_name." (";
+            $string .= implode(",", array_keys($data)) . ') VALUES (';
+            $string .= "'" . implode("','", array_values($data)) . "')";
+            try{
+                $res =  mysqli_query($this->db->conn, $string);
+                print_r($res);
+                header("Location: stories.php");
+            }catch(Exception $e){
+                echo $e->getMessage(); die;
+            }
+        }
+
+        public function search(){
+            $check = mysqli_query($this->db->conn, "SELECT * FROM stories");
+
+            // $result = mysqli_fetch_array($check);
+            return $check;
+
+        }
+
+        public function viewdetail($id){
+            $check = mysqli_query($this->db->conn, "SELECT * FROM stories where id='$id'");
+            return $check;
+        }
+
+        public function takesdetail($id){
+            $check = mysqli_query($this->db->conn, "SELECT * FROM stories where id='$id'");
+            return $check;
+        }
+
+        public function updatestories($table_name, $form_data,$story_id)
+        {
+            {
+                $valueSets = array();
+                foreach($form_data as $key => $value) {
+                    $valueSets[] = $key . " = '" . $value . "'";
+                }
+                $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE id = '".$story_id."'";
+                $result = mysqli_query($this->db->conn, $sql);
+                if (mysqli_query($this->db->conn, $sql)) {
+
+                }
+                else
+                {
+                    echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+                }
+            }
+        }
+        function update_data($table_name, $form_data,$story_id)
+        {
+            $valueSets = array();
+            foreach($form_data as $key => $value) {
+                $valueSets[] = $key . " = '" . $value . "'";
+            }
+            $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE story_id = '".$story_id."'";
+            $result = mysqli_query($this->db->conn, $sql);
+            if (mysqli_query($this->db->conn, $sql)) {
+
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+            }
+        }
+
+        function delete_image($table_name, $form_data,$story_id,$travel_id)
+        {
+            $valueSets = array();
+            foreach($form_data as $key => $value) {
+                $valueSets[] = $key . " = '" . $value . "'";
+            }
+            $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE story_id = '".$story_id."'";
+            $result = mysqli_query($this->db->conn, $sql);
+            if (mysqli_query($this->db->conn, $sql)) {
+                header('location:delete_images.php?travel_id=' . $travel_id);
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+            }
+        }
+
+        function delete_user($table_name, $form_data,$story_id,$travel_id)
+        {
+            $valueSets = array();
+            foreach($form_data as $key => $value) {
+                $valueSets[] = $key . " = '" . $value . "'";
+            }
+            $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE story_id = '".$story_id."'";
+            $result = mysqli_query($this->db->conn, $sql);
+            if (mysqli_query($this->db->conn, $sql)) {
+                header('location:delete_images.php?travel_id=' . $travel_id);
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+            }
+        }
+
     }
+
+$k = new dbFunc();
+
 ?>  

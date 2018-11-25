@@ -1,5 +1,7 @@
 <?php
-if (empty($_SESSION['username'])) {
+session_start();
+if (!(isset($_SESSION['username'])))
+{
     header('Location: login.php');
     exit;
 }
@@ -20,7 +22,7 @@ if (empty($_SESSION['username'])) {
        
     </div>
     <div class="col-md-6 headerstyle">
-    <a href="viewStories.php" >  <img src="logo.png" class="logo">
+    <a href="index.php" >  <img src="logo.png" class="logo">
     </div>
     <div class="col-md-6 headerstyle text-right">
             <button type="button" name="view" class="btnstyle"><a href="index.php" >View</a></button>

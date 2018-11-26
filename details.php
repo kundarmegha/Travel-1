@@ -15,6 +15,7 @@ $_SESSION['id']= $_GET['id'];
 
 <html>
 <head>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="ckeditor/ckeditor.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -103,9 +104,6 @@ if(isset($_POST['submit']))
         if (preg_match('/call|buy|poker|casino|www.|.com/i', $comment)) {
             $flag = 0;
         }
-        if (preg_match('/[\' \. * " \'[0-9]/', $comment)) {
-            $flag = 0;
-        }
         if ($flag == 1) {
             $table = "comments";
             $field = array("sid", "name", "body", "date");
@@ -152,6 +150,21 @@ $row = $obj-> fetch_comment($sid);
 <body>
 <div class="container">
     <h2 class='page-header'>Comments</h2>
+    <div class="container">
+        <div class='row'>
+            <div class='col-md-8'>
+                <form method='POST' action=''>
+                    <textarea name='comment1' id='comment1'></textarea>
+                    <input type='text' name='urlId'  value="<?php echo $_GET['id'] ?>" style="display: none;">
+                    <textarea name='comment' id='comment' class='form-control' cols='30' rows='10' maxlength='300' required></textarea>
+                    <br>
+                    <span class="error"><?php if(isset($captchaerr)) echo $captchaerr ?> </span><br>
+                    <div class="g-recaptcha" data-sitekey="6LdumnwUAAAAAPxnmm9BtC-WW9Uid4mSQGXbKPEz"></div><br>
+                    <input type='submit' name='submit' class='btn btn-danger' value='Submit'>
+                </form>
+            </div>
+        </div>
+    </div>
     <?php
     $count = sizeof($row);
     if ($count >= 1)
@@ -235,21 +248,7 @@ $row = $obj-> fetch_comment($sid);
             </div>
             </div><?php }} ?>
 </div>
-<div class="container">
-    <div class='row'>
-        <div class='col-md-8'>
-            <form method='POST' action=''>
-                <textarea name='comment1' id='comment1'></textarea>
-                <input type='text' name='urlId'  value="<?php echo $_GET['id'] ?>" style="display: none;">
-                <textarea name='comment' id='comment' class='form-control' cols='30' rows='10' maxlength='300' required></textarea>
-                <br>
-                <span class="error"><?php if(isset($captchaerr)) echo $captchaerr ?> </span><br>
-                <div class="g-recaptcha" data-sitekey="6LdumnwUAAAAAPxnmm9BtC-WW9Uid4mSQGXbKPEz"></div><br>
-                <input type='submit' name='submit' class='btn btn-danger' value='Submit'>
-            </form>
-        </div>
-    </div>
-</div>
+
 </body>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 </html>

@@ -1,5 +1,5 @@
 <?php
-    include("db.php");
+    include("dbFunc.php");
     $obj=new db();
     $conn=$obj->dbconnector();
     $res = mysqli_query($conn, "SELECT * FROM profile");
@@ -57,7 +57,7 @@
                <div class="col-xs-6 col-md-6 text-center container-data">
                    <?php
                echo '<h1 class="travel_header">'.$place.'</h2>';
-               echo '<a href="details.php?travel_id=' . $travel_id . '"><img class="travel_img" src= ' . $banner_path .'></a><br/>';
+               echo '<a href="admin_details.php?travel_id=' . $travel_id . '"><img class="travel_img" src= ' . $banner_path .'></a><br/>';
                ?>
                </div>
                   <?php

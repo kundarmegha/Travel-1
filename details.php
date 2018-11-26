@@ -211,7 +211,7 @@ $row = $obj-> fetch_comment($sid);
                                             <?php echo $value['body'] ?>
                                         </p>
                                     </div>
-                                    <p class='text-right'><a href='#' class='btn btn-default btn-sm' onclick='reply("<?php echo $key ?>")';><i class='fa fa-reply'></i> reply</a></p>
+                                    <p class='text-right'><a href='javascript:void(0)' class='btn btn-default btn-sm' onclick='reply("<?php echo $key ?>")';><i class='fa fa-reply'></i> reply</a></p>
 
                                     <?php
                                     $replies = $obj-> reply_comment($key);

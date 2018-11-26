@@ -7,7 +7,6 @@ require_once 'dbConnect.php';
         public function __construct() {  
             $this->db = new dbConnect();   
         }  
-
         function Insertdata($table,$field,$data)
         {
             $field_values= implode(',',$field);
@@ -198,6 +197,98 @@ die;
 
         }
 
+        public function user_delete($username){
+            $sql="SET sql_safe_updates=0";
+            $sql= "delete from profile where username='$username'";
+            
+            $sql1="SET sql_safe_updates=0";
+            $sql1= "delete from stories where user='$username'";
+
+            if (mysqli_query($this->db->conn,$sql)) {
+            }
+            else
+            {
+            echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+            }
+
+
+            if (mysqli_query($this->db->conn,$sql1)) {
+            }
+            else
+            {
+            echo "Error: " . $sql1 . "" . mysqli_error($this->db->conn);
+            }
+        }
+
+          public function comment_delete($comment_id){
+
+            $sql1="SET sql_safe_updates=0";
+            $sql1= "delete from reply where pid='$comment_id'";
+
+            if (mysqli_query($this->db->conn,$sql1)) {
+            }
+            else
+            {
+            echo "Error: " . $sql1 . "" . mysqli_error($this->db->conn);
+            }
+
+            $sql="SET sql_safe_updates=0";
+            $sql= "delete from comments where id='$comment_id'";
+
+            if (mysqli_query($this->db->conn,$sql)) {
+            }
+            else
+            {
+            echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+            }
+        }
+
+        public function user_story($story_id){
+            $check =mysqli_query($this->db->conn,"delete from stories where id=$story_id");
+        }
+
+        public function travel_fetch($story_id){
+            $check = mysqli_query($this->db->conn, "select * from stories where id=$story_id");
+            return $check;
+        }
+
+        public function profile_fetch()
+        {
+            $check = mysqli_query($this->db->conn,"SELECT * FROM stories");
+            return $check;
+        }
+
+        public function user_fetch()
+        {
+            $check = mysqli_query($this->db->conn,"select * from profile");
+            return $check;
+        }
+
+        public function comments_fetch()
+        {
+            $check = mysqli_query($this->db->conn,"select * from comments");
+            return $check;
+        }
+
+        function update_storydata($table_name, $form_data,$story_id)
+        {
+        $valueSets = array();
+        foreach($form_data as $key => $value) {
+        $valueSets[] = $key . " = '" . $value . "'";
+        }
+        $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE id = '".$story_id."'";
+        $result = mysqli_query($this->db->conn, $sql);
+        if (mysqli_query($this->db->conn, $sql)) {
+            header('location:admin_details.php?story_id=' . $story_id);
+        }
+        else
+        {
+        echo "Error: " . $sql . "" . mysqli_error($conn);
+        }
+      }
+
+     
+
         public function viewdetail($id){
             $check = mysqli_query($this->db->conn, "SELECT * FROM stories where id='$id'");
             return $check;
@@ -280,5 +371,6 @@ die;
     }
 
 $k = new dbFunc();
+
 
 ?>  

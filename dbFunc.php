@@ -2,7 +2,7 @@
 //session_start();
 require_once 'dbConnect.php';  
 
-    class dbFunc {  
+    class dbFunc {
         private $db;
         public function __construct() {  
             $this->db = new dbConnect();   
@@ -18,11 +18,14 @@ require_once 'dbConnect.php';
             $result = mysqli_query($this->db->conn,$sql);
             if($result)
             {
+                return 1;
 //                echo "<script>location.href='login.php'</script>";
             }
             else
             {
-              return 0;
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+die;
+                return 0;
             }
         }
         function loginprocess($eid,$password)
@@ -128,8 +131,9 @@ require_once 'dbConnect.php';
                 if($row = mysqli_fetch_assoc($result))
                 {
                     $solutions = $row;
+                    return $solutions;
                 }
-                return $solutions;
+                
             }
             else
             {
@@ -153,7 +157,7 @@ require_once 'dbConnect.php';
             }
         }
 
-        function like_count($sid,$user,$check)
+        function like_count($sid,$check)
         {
             $sql = "select count(id) from reaction where $check = '1' and sid= $sid";
             $result = mysqli_query($this->db->conn, $sql);

@@ -1,10 +1,12 @@
 <?php
 include("dbFunc.php");
+session_start();
 $flag=0;
 $title = $_POST["title"];
-$user="deeksha";
+$user=$_SESSION['username'];
 $description = $_POST["description"];
 $photo=$_FILES['file']['name'];
+
 
 $filepath="upload/".$photo;
 $up=move_uploaded_file($_FILES["file"]["tmp_name"] , "$filepath");
@@ -35,7 +37,7 @@ $form_data = array(
   );
 
   $table_name = 'stories';
-  $x = new Connect();
+  $x = new dbFunc();
   $x->insertstories("$table_name",$form_data);
 }
  

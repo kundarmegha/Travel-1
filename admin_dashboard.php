@@ -1,5 +1,5 @@
 <?php
-    include("db.php");
+    include("dbFunc.php");
     $obj=new db();
     $conn=$obj->dbconnector();
     $res = mysqli_query($conn, "SELECT * FROM profile");

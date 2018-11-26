@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include("dbFunc.php");
 $id = null;
@@ -7,6 +8,7 @@ if ( !empty($_GET['id'])) {
    $id = $_GET['id'];
 }
 $_SESSION['id']= $_GET['id'];
+
 ?>
 
 <html>

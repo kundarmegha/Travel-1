@@ -147,29 +147,29 @@ class Instagraph
 switch($_POST['name']){
 
 case 'gray':$output="img_filter";
-            $img_effect=new Instagraph($img_name,$output);
-            $img_effect->factory($img_name,$output);
+            $img_effect=new Instagraph("upload/".$img_name,'upload/'.$output);
+            $img_effect->factory("upload/".$img_name,'upload/'.$output);
             $img_effect->gotham();
             echo $output;
             break;
 
 case 'toaster':$output="img_filter1";
-               $img_effect=new Instagraph($img_name,$output);
-               $img_effect->factory($img_name,$output);
+               $img_effect=new Instagraph("upload/".$img_name,'upload/'.$output);
+               $img_effect->factory("upload/".$img_name,'upload/'.$output);
                $img_effect->toaster();
                echo $output;
                break;
 
 case 'nashville':$output="img_filter2";
-                $img_effect=new Instagraph($img_name,$output);
-                $img_effect->factory($img_name,$output);
+                $img_effect=new Instagraph("upload/".$img_name,'upload/'.$output);
+                $img_effect->factory("upload/".$img_name,'upload/'.$output);
                 $img_effect->nashville();
                 echo $output;
                 break;
 
 case 'lomo':$output="img_filter3";
-                $img_effect=new Instagraph($img_name,$output);
-                $img_effect->factory($img_name,$output);
+                $img_effect=new Instagraph("upload/".$img_name,'upload/'.$output);
+                $img_effect->factory("upload/".$img_name,'upload/'.$output);
                 $img_effect->lomo();
                 echo $output;
                 break;

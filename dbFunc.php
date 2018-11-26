@@ -81,31 +81,8 @@ die;
             {
                 echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
             }
-
-<?php
-class db{
-  private $server = "localhost";
-  private $dbuser = "root";
-  private $dbpassword = "root";
-  private $dbname="Travel";
-  public $conn;
-
-  public function dbconnector()  {
-      $this->conn = new mysqli($this->server,$this->dbuser,$this->dbpassword,$this->dbname);
-      return $this->conn;
-  }
-
-  function update_data($table_name, $form_data,$story_id)
-        {
-        $valueSets = array();
-        foreach($form_data as $key => $value) {
-        $valueSets[] = $key . " = '" . $value . "'";
         }
-        $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE story_id = '".$story_id."'";
-        $result = mysqli_query($this->conn, $sql);
-        if (mysqli_query($this->conn, $sql)) {
-        }
-        else
+        function fetch_comment($sid)
         {
             $sql = " Select id,sid,name,body,date from comments where sid = $sid order by  id desc  ;";
             $result = mysqli_query($this->db->conn, $sql);
@@ -124,22 +101,30 @@ class db{
                 echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
                 exit(1);
             }
-        echo "Error: " . $sql . "" . mysqli_error($conn);
         }
-      }
 
-      function delete_image($table_name, $form_data,$story_id,$travel_id)
+        function reply_comment($pid)
         {
-        $valueSets = array();
-        foreach($form_data as $key => $value) {
-        $valueSets[] = $key . " = '" . $value . "'";
+            $sql = " Select * from reply where pid = $pid order by  id desc;";
+            $result = mysqli_query($this->db->conn, $sql);
+            $solutions = [];
+            if($result)
+            {
+                while($row = mysqli_fetch_assoc($result))
+                {
+                    $solutions[$row['id']] = $row;
+                }
+                return $solutions;
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+                exit(1);
+            }
         }
-        $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE story_id = '".$story_id."'";
-        $result = mysqli_query($this->conn, $sql);
-        if (mysqli_query($this->conn, $sql)) {
-         header('location:delete_images.php?travel_id=' . $travel_id);
-        }
-        else
+
+
+        function like_check($sid,$user,$select)
         {
             $sql = " Select $select from reaction where sid = $sid and user = '$user'";
             $result = mysqli_query($this->db->conn, $sql);
@@ -157,25 +142,38 @@ class db{
                 echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
                 exit(1);
             }
-        echo "Error: " . $sql . "" . mysqli_error($conn);
         }
-      }
 
-      function delete_user($table_name, $form_data,$story_id,$travel_id)
+        function like_update($sid,$user,$like,$dislike)
         {
-        $valueSets = array();
-        foreach($form_data as $key => $value) {
-        $valueSets[] = $key . " = '" . $value . "'";
+            $sql = "UPDATE reaction SET `like` = $like, dislike = $dislike  WHERE  sid = $sid and user =  '$user'";
+            $result = mysqli_query($this->db->conn, $sql);
+            if($result)
+            {
+                return true;
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+                exit(1);
+            }
         }
+
         function like_count($sid,$check)
-        $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE story_id = '".$story_id."'";
-        $result = mysqli_query($this->conn, $sql);
-        if (mysqli_query($this->conn, $sql)) {
-         header('location:delete_images.php?travel_id=' . $travel_id);
-        }
-        else
         {
-        echo "Error: " . $sql . "" . mysqli_error($conn);
+            $sql = "select count(id) from reaction where $check = '1' and sid= $sid";
+            $result = mysqli_query($this->db->conn, $sql);
+            if($result)
+            {
+                $row = mysqli_fetch_assoc($result);
+                $solutions = $row['count(id)'];
+                return $solutions;
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+                exit(1);
+            }
         }
         public function insertstories($table_name, $data)
         {
@@ -284,13 +282,3 @@ class db{
 $k = new dbFunc();
 
 ?>  
-      }
-
-
-      
-
-     
-
-}
-
-?>

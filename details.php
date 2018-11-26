@@ -41,9 +41,11 @@ $_SESSION['id']= $_GET['id'];
     $title=$result['title'];
     $description=$result['description'];
     $photo=$result['photo']?>
+    
     <h2 class="moreDetailtiyle"><?php echo $title;?></h2>
     <!-- <img src="<?php echo $photo;?>"  class="centerview"> -->
-    <p><?php echo $description;?></p>
+    
+    <p class="descriptiondetail"><?php echo $description;?></p>
 
 
 </div>

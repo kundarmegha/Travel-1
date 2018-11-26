@@ -109,6 +109,7 @@ class db{
         {
             $sql = " Select id,sid,name,body,date from comments where sid = $sid order by  id desc  ;";
             $result = mysqli_query($this->db->conn, $sql);
+            $solutions = [];
             if($result)
             {
                 while($row = mysqli_fetch_assoc($result))

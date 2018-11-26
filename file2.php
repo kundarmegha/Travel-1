@@ -147,7 +147,7 @@ class Instagraph
 
 switch($_POST['filter']){
 
-     case 'gray':$output="image1";
+     case 'gray':$output="image11";
                 $img_effect=new Instagraph($_SESSION['photo'],"upload/".$output);
                 $img_effect->factory($_SESSION['photo'],"upload/".$output);
                 $img_effect->gotham();

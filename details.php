@@ -61,9 +61,9 @@ $_SESSION['id']= $_GET['id'];
     <br/>
     </div>
     <!-- image filtering ends -->
-
+     <div class="desc">
     <p class="descriptiondetail"><?php echo $description;?></p>
-
+    </div>
 
 </div>
 <?php  require_once('reaction.php');

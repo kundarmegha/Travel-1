@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
                 die('Could not connect: ' . mysqli_error());
              }
 
-             echo 'Connected successfully<br>';
+             echo 'Submitted sucessfully<br>';
 
              
 
@@ -72,7 +72,7 @@ if(isset($_POST['submit'])){
     
           // alert("Data: " + data + "\nStatus: " + status);
                      $('#blah').attr('src', data);
-                     document.getElementById("blah").style.display="block";
+                    // document.getElementById("blah").style.display="block";
             });
 
         }

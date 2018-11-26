@@ -35,8 +35,10 @@ if (!(isset($_SESSION['username'])))
             <input type="text" id="title" name="title" placeholder="Title of stroy.." class="form-control" ><br>
            
             <label for="title" class="storytext">Image</label>
-            <input type="file"  class="form-control" name="file">
-    
+            <input type="file"  class="form-control" name="file"><br/>
+            
+            <label for="tag" class="storytext">Add a tag for image</label>
+            <input type="text" name="add_tag"/>
        <br/>
         <label for="description" class="storytext">Write your travelling story</label>
             <textarea name="description" class="ckeditor" class="form-control"></textarea><br>

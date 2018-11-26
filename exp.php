@@ -87,17 +87,18 @@ if(isset($_POST['submit'])){
 
     <!-- <input type="file" id="image_file" name="file" onchange="readURL(this);" /><br/> -->
 
-    <img id="blah" src=<?php echo $photo;?> alt=<?php echo $alt; ?> id="display_image" style="height:550px;width:auto;"/>
+    <img id="blah" src=<?php echo $photo;?> alt=<?php echo $alt; ?> id="display_image" style="height:500px;width:auto;"/>
     <br/>
-    <input type="button" name="blacknwhite" id="blacknwhite" value="Greyscale" onclick="grayscale('gray')">
-    <input type="button" name="toaster" id="toaster"  value="toaster" onclick="grayscale('toaster')">
-    <input type="button" name="nashville" id="nashville"  value="nashville" onclick="grayscale('nashville')">
-    <input type="button" name="lomo" id="lomo" value="lomo" onclick="grayscale('lomo')">
-    <br/>
+    <input type="button" name="normal" id="normal" value="normal" onclick="grayscale('normal')" style="border:none;background-color:#FF005F;color:white;padding:5px 5px;">
+    <input type="button" name="blacknwhite" id="blacknwhite" value="Greyscale" onclick="grayscale('gray')" style="border:none;background-color:#FF005F;color:white;padding:5px 5px;">
+    <input type="button" name="toaster" id="toaster"  value="toaster" onclick="grayscale('toaster')" style="border:none;background-color:#FF005F;color:white;padding:5px 5px;">
+    <input type="button" name="nashville" id="nashville"  value="nashville" onclick="grayscale('nashville')" style="border:none;background-color:#FF005F;color:white;padding:5px 5px;">
+    <input type="button" name="lomo" id="lomo" value="lomo" onclick="grayscale('lomo')" style="border:none;background-color:#FF005F;color:white;padding:5px 5px;">
+    <br/><br/>
     <!-- <input type="button" name="kelvin" id="kelvin" style="display:none;" value="kelvin" onclick="grayscale('kelvin')"> -->
-    <input type="submit" name="submit">
+    <input type="submit" name="submit" style="border:none;background-color:#FF005F;color:white;padding:5px 5px;">
 
-    <button onclick="window.location.href='index.php'" style="border:none;background-color:#FF005F;color:white;padding:5px 5px;">Home page</button>
+    <button style="border:none;background-color:#FF005F;color:white;padding:5px 5px;"><a href="index.php" style="text-decoration:none;color:white;">Home page</a></button>
 
     </form>
 

@@ -80,8 +80,8 @@ margin-right: 17px;
 margin-bottom: 0px;
 }
 .centerview{
-width:100%;
-height:500px;
+width:auto;
+height:auto;
 }
 .moreDetailtiyle{
 text-align:center;
@@ -109,7 +109,14 @@ font-size: 50px;
 .descriptiondetail{
     font-size: 30px;
 }
-
+.desc p{
+    font-size: 25px;
+ }
+ .desc{
+    margin: auto;
+    max-width: 800;
+    text-align: justify;
+ }
 @media only screen and (max-width: 767px) {
     .bannertitle {
         position: absolute;
@@ -126,11 +133,3 @@ margin-right: 51px;
     }
 }
 
-.desc p{
-    font-size: 25px;
- }
- .desc{
-    margin: auto;
-    max-width: 800;
-    text-align: justify;
- }

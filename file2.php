@@ -146,6 +146,9 @@ class Instagraph
 // $img_effect->factory($img_name,$output);
 
 switch($_POST['filter']){
+    case 'normal':$output=$_SESSION['photo'];
+               echo $output;
+               break;
 
      case 'gray':$output="image11";
                 $img_effect=new Instagraph($_SESSION['photo'],"upload/".$output);

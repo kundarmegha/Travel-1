@@ -31,6 +31,7 @@ include("dbFunc.php");
 $y = new dbFunc();
 $res = $y->search();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,12 +42,13 @@ $res = $y->search();
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link  rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body style="background-color:black;">
 <div>
 
     <div class="col-md-12 main-container">
         <div class="col-md-6 headerstyle">
-            <a href="index.php" >  <img src="logo.png" class="logo">
+            <a href="index.php" >  <img src="logo.png" class="logo" style="display:inline;">
+            <h2 style="font-size:22px;color:#FF005F;display:inline;" >Travel experience</h2>
         </div>
         <div class="col-md-6 headerstyle text-right">
             <?php if((isset($_SESSION['username'])))
@@ -67,7 +69,7 @@ $res = $y->search();
             ?>
 
         </div>
-        <img src="slider-1.jpg" class="centerview">
+        <img src="https://media.giphy.com/media/PFcpx5gfE0GOs/giphy.gif" class="centerview">
     </div>
     <div class="col-md-12" ><h2 class="moreDetailtiyle">Stories</h2>
             <?php

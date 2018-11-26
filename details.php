@@ -31,16 +31,18 @@ $_SESSION['id']= $_GET['id'];
 
 <div class="col-md-12 main-container">
     <div class="col-md-6 headerstyle">
-        <a href="index.php"><img src="logo.png" class="logo">
+        <a href="index.php"><img src="logo.png" class="logo" style="display:inline;">
+        <h2 style="font-size:22px;color:#FF005F;display:inline;" >Travel experience</h2>
     </div>
     <div class="col-md-6 headerstyle text-right">
         <!--    <button type="submit" name="view" class="btnstyle">-->
         <!--    <a href="edit.php?id=--><?php //echo $id?><!--">Edit</a></button>-->
-        <a href="index.php" > <button type="submit" name="view" class="btnstyle">Back</button></a>
+        <a href="index.php" style="color:black;text-decoration:none;"> <button type="submit" name="view" class="btnstyle">Back</button></a>
     </div>
-    <img src="slider-1.jpg" class="centerview">
+    <img src="slider-1.jpg" style="height:50%;" class="centerview">
 </div>
 <div>
+
     <?php
 
     $res=$k->viewdetail($id);
@@ -50,13 +52,15 @@ $_SESSION['id']= $_GET['id'];
     $photo=$result['photo'];
     $alt=$result['alt'];
     $filtered_image=$result['filtered_image'];
+
     ?>
+
     <h2 class="moreDetailtiyle"><?php echo $title;?></h2>
     <!-- <img src="<?php echo $photo;?>"  class="centerview"> -->
 
     <!-- megha added for image filtering -->
     <div class="image_story" style="text-align:center;">
-    <img src=<?php if(!$filtered_image){echo $photo;} else echo $filtered_image;?> alt=<?php echo $alt?> align="middle" /><br/><br/>
+    <img src=<?php if(empty($filtered_image)){echo $photo;} else echo $filtered_image;?> alt=<?php echo $alt?> align="middle"  style="height:60%;width:60%;"/><br/><br/>
     <button onclick="window.location.href='exp.php'" style="border:none;background-color:#FF005F;color:white;padding:5px 5px;">Add image filters</button>
     <br/>
     </div>
@@ -66,7 +70,11 @@ $_SESSION['id']= $_GET['id'];
     </div>
 
 </div>
-<?php  require_once('reaction.php');
+
+<?php  
+
+require_once('reaction.php');
+
 require_once('dbFunc.php');
 if (isset($_SESSION['username'])) {
     $name = $_SESSION['username'];
@@ -243,10 +251,7 @@ $row = $obj-> fetch_comment($sid);
                                                 </div>
                                             </div>
 
-
                                         <?php }}?>
-
-
 
                                     <div class='col-md-8' id='<?php echo $key ?>' style="display:none;">
                                         <form method='POST' action=''>

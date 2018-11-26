@@ -1,7 +1,7 @@
 <?php
     include("dbFunc.php");
     $obj = new dbFunc();
-    $user = $obj-> user_fetch();
+    $comment = $obj-> comments_fetch();
     ?>
     <!DOCTYPE html>
 <html lang="en">
@@ -39,25 +39,21 @@
         <table class="table table-bordered">
             <tr>
                 <th>Name</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>DOB</th>
+                <th>Comment</th>
+                <th>Date</th>
                 <th>Action</th>
     </tr>
     
         <?php
-    while($row=mysqli_fetch_array($user)){
+    while($row=mysqli_fetch_array($comment)){
      ?>
      <tr>
-         <td><?php echo $row['username'];?></td>
-         <td><?php echo $row['firstname'];?></td>
-         <td><?php echo $row['lastname'];?></td>
-         <td><?php echo $row['email'];?></td>
-         <td><?php echo $row['dob'];?></td>
+         <td><?php echo $row['name'];?></td>
+         <td><?php echo $row['body'];?></td>
+         <td><?php echo $row['date'];?></td>
          <td>
              <?php
-         echo '<a href="deleteuser.php?user_id=' . $row['username'] . '" class="btn btn-warning btn-md">Delete User</a><br/>';
+         echo '<a href="deletecomment.php?comment_id=' . $row['id'] . '" class="btn btn-warning btn-md">Delete Comment</a><br/>';
          ?>
         </td>
     </tr>

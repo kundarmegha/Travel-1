@@ -3,7 +3,8 @@ require_once ('dbFunc.php');
 $obj = new dbFunc();
 
 $sid = $_SESSION['id'];
-if(isset($_SESSION['username'])){
+if(isset($_SESSION['username']))
+{
 $user = $_SESSION['username'];
 $select = "`like`";
 $lrow = $obj->like_check($sid,$user,$select);

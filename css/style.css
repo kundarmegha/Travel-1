@@ -125,3 +125,12 @@ font-size: 50px;
 margin-right: 51px;
     }
 }
+
+.desc p{
+    font-size: 25px;
+ }
+ .desc{
+    margin: auto;
+    max-width: 800;
+    text-align: justify;
+ }
